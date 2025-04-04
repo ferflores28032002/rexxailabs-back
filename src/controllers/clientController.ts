@@ -49,9 +49,7 @@ export const createClient = async (req: Request, res: Response) => {
 
 export const getClients = async (req: Request, res: Response) => {
   try {
-    const userId = (req as any).userId;
     const clients = await Client.findAll({
-      where: { userId },
       include: [User, { model: Project }],
     });
     res.status(200).json(clients);
